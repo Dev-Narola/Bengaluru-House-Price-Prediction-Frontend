@@ -42,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
           text: "Bengaluru House Price Prediction",
           color: Kdark,
           fontSize: 20,
-          fontWeight: FontWeight.w700,
+          fontWeight: FontWeight.bold,
         ),
       ),
     );
@@ -178,13 +178,85 @@ class _HomeScreenState extends State<HomeScreen> {
         bath: _bathroomsController.text,
       );
 
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            "Predicted Price: ₹${(prediction['Price']! * 100000).toStringAsFixed(2)}",
-          ),
-        ),
-      );
+      _bathroomsController.clear();
+      _bhkController.clear();
+      _squareFeetController.clear();
+
+      showDialog(
+          context: context,
+          builder: (context) {
+            return Dialog(
+              backgroundColor: Koffwhite,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12.r),
+              ),
+              child: Stack(
+                children: [
+                  Positioned(
+                    top: 15,
+                    right: 15,
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Icon(
+                        LineIcons.times,
+                        color: Kdark,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: 18.0.w, vertical: 14.h),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(height: 25.h),
+                        const ReusableText(
+                          text: "Predicted Price",
+                          color: Kdark,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600,
+                        ),
+                        SizedBox(height: 12.h),
+                        TextFormField(
+                          readOnly: true,
+                          decoration: InputDecoration(
+                            hintText: (prediction['Price'] * 100000)
+                                .toStringAsFixed(2),
+                            hintStyle: const TextStyle(
+                              color: Kdark,
+                            ),
+                            prefixIcon: const Icon(
+                              LineIcons.indianRupeeSign,
+                            ),
+                            prefixIconColor: Kdark,
+                            enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(8.r),
+                                borderSide:
+                                    const BorderSide(color: Kdark, width: 1.5)),
+                          ),
+                          cursorColor: Kdark,
+                          style: const TextStyle(color: Kdark),
+                        ),
+                        SizedBox(height: 12.h),
+                        ReusableButton(
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                          content: "C o n t i n u e",
+                          backgroundColor: Kdark,
+                          textColor: Koffwhite,
+                          btnHeight: 40,
+                        )
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            );
+          });
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text("Error: $e")),

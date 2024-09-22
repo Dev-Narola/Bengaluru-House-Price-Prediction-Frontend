@@ -21,15 +21,13 @@ class ApiController {
     };
 
     try {
-      final http.Response response = await http
-          .post(
-            Uri.parse(endpoint),
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: json.encode(body),
-          )
-          .timeout(const Duration(seconds: 10)); // Add a timeout
+      final http.Response response = await http.post(
+        Uri.parse(endpoint),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: json.encode(body),
+      );
 
       if (response.statusCode == 200) {
         return json.decode(response.body) as Map<String, dynamic>;
