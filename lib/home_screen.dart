@@ -8,6 +8,7 @@ import 'package:bhpp/reusable_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -150,8 +151,31 @@ class _HomeScreenState extends State<HomeScreen> {
         if (_isFormValid()) {
           await _handlePrediction(context);
         } else {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text("Please fill all the fields")),
+          // ScaffoldMessenger.of(context).showSnackBar(
+          //   SnackBar(
+          //     dismissDirection: DismissDirection.up,
+          //     duration: const Duration(milliseconds: 1000),
+          //     backgroundColor: Colors.grey,
+          //     margin: EdgeInsets.only(
+          //         bottom: MediaQuery.of(context).size.height - 100,
+          //         left: 10,
+          //         right: 10),
+          //     behavior: SnackBarBehavior.floating,
+          //     content: Text(
+          //       "Please fill all the details",
+          //       style: const TextStyle(
+          //         fontSize: 20,
+          //       ),
+          //     ),
+          //   ),
+          // );
+          Fluttertoast.showToast(
+            msg: "Please fill all the details",
+            backgroundColor: Kred,
+            textColor: Koffwhite,
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.TOP,
+            fontSize: 18.sp,
           );
         }
       },
