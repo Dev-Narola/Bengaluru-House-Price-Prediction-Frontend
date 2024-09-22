@@ -10,7 +10,7 @@ const Kdark = Color.fromARGB(255, 0, 0, 0);
 const Kred = Color.fromARGB(255, 255, 0, 0);
 const Kgreen = Color.fromARGB(255, 0, 255, 0);
 
-final List<String> list = <String>[
+final List<String> locationList = <String>[
   "Select Location",
   "1st block jayanagar",
   "1st phase jp nagar",
