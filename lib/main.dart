@@ -1,6 +1,6 @@
 // ignore_for_file: depend_on_referenced_packages
 
-import 'package:bhpp/home_screen.dart';
+import 'package:bhpp/dark_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
           home: child,
         );
       },
-      child: const HomeScreen(),
+      child: const DarkTheme(),
     );
   }
 }

@@ -10,14 +10,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class DarkTheme extends StatefulWidget {
+  const DarkTheme({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<DarkTheme> createState() => _DarkThemeState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _DarkThemeState extends State<DarkTheme> {
   String dropdownValue = "Select Location";
   final TextEditingController _squareFeetController = TextEditingController();
   final TextEditingController _bathroomsController = TextEditingController();
@@ -37,11 +37,11 @@ class _HomeScreenState extends State<HomeScreen> {
     return PreferredSize(
       preferredSize: Size(double.infinity, 60.h),
       child: AppBar(
-        backgroundColor: Koffwhite,
+        backgroundColor: Kdark,
         centerTitle: true,
         title: const ReusableText(
           text: "Bengaluru House Price Prediction",
-          color: Kdark,
+          color: Koffwhite,
           fontSize: 20,
           fontWeight: FontWeight.bold,
         ),
@@ -91,6 +91,7 @@ class _HomeScreenState extends State<HomeScreen> {
       text: text,
       fontSize: 16,
       fontWeight: FontWeight.w600,
+      color: Koffwhite,
     );
   }
 

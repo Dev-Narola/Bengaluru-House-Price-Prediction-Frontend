@@ -11,6 +11,7 @@ class ReusableTextfield extends StatelessWidget {
   final Icon? prefixIcon;
   final Color? prefixIconColor;
   final TextInputType? textInputType;
+  final Color? borderColor;
   const ReusableTextfield({
     super.key,
     required this.hintText,
@@ -18,6 +19,7 @@ class ReusableTextfield extends StatelessWidget {
     this.prefixIcon,
     this.prefixIconColor,
     this.textInputType,
+    this.borderColor,
   });
 
   @override
@@ -38,7 +40,7 @@ class ReusableTextfield extends StatelessWidget {
             borderSide: const BorderSide(color: Kgray, width: 1.3)),
         focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8.r),
-            borderSide: const BorderSide(color: Kdark, width: 1.3)),
+            borderSide: BorderSide(color: borderColor ?? Kdark, width: 1.3)),
       ),
       cursorColor: Kdark,
       controller: controller,
