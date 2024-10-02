@@ -1,3 +1,5 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
@@ -11,6 +13,7 @@ class ApiController {
     required String bhk,
     required String bath,
   }) async {
+    // ignore: prefer_const_declarations
     final String endpoint = '$_baseUrl/predict';
 
     final Map<String, dynamic> body = {
