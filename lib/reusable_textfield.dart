@@ -12,6 +12,10 @@ class ReusableTextfield extends StatelessWidget {
   final Color? prefixIconColor;
   final TextInputType? textInputType;
   final Color? borderColor;
+  final Color? offBorder;
+  final Color? textColor;
+  final Color? inputColor;
+  final Color? cursorColor;
   const ReusableTextfield({
     super.key,
     required this.hintText,
@@ -20,6 +24,10 @@ class ReusableTextfield extends StatelessWidget {
     this.prefixIconColor,
     this.textInputType,
     this.borderColor,
+    this.offBorder,
+    this.textColor,
+    this.inputColor,
+    this.cursorColor,
   });
 
   @override
@@ -27,25 +35,25 @@ class ReusableTextfield extends StatelessWidget {
     return TextFormField(
       decoration: InputDecoration(
         hintText: hintText,
-        hintStyle: const TextStyle(
-          color: Kgray,
+        hintStyle: TextStyle(
+          color: textColor ?? Kgray,
         ),
         prefixIcon: prefixIcon,
         prefixIconColor: prefixIconColor ?? Kdark,
         disabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8.r),
-            borderSide: const BorderSide(color: Kgray, width: 1.3)),
+            borderSide: BorderSide(color: offBorder ?? Kgray, width: 1.3)),
         enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8.r),
-            borderSide: const BorderSide(color: Kgray, width: 1.3)),
+            borderSide: BorderSide(color: offBorder ?? Kgray, width: 1.3)),
         focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8.r),
             borderSide: BorderSide(color: borderColor ?? Kdark, width: 1.3)),
       ),
-      cursorColor: Kdark,
+      cursorColor: cursorColor ?? Kdark,
       controller: controller,
       keyboardType: textInputType,
-      style: const TextStyle(color: Kdark),
+      style: TextStyle(color: inputColor ?? Kdark),
     );
   }
 }

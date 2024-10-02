@@ -5,10 +5,12 @@ import 'package:bhpp/controller.dart';
 import 'package:bhpp/reusable_button.dart';
 import 'package:bhpp/reusable_text.dart';
 import 'package:bhpp/reusable_textfield.dart';
+import 'package:bhpp/theme_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get.dart';
 
 class DarkTheme extends StatefulWidget {
   const DarkTheme({super.key});
@@ -27,16 +29,31 @@ class _DarkThemeState extends State<DarkTheme> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Koffwhite,
+      backgroundColor: Kdark,
       appBar: _buildAppBar(),
       body: _buildBody(context),
     );
   }
 
   PreferredSizeWidget _buildAppBar() {
+    final ThemeController themeController = Get.find();
     return PreferredSize(
       preferredSize: Size(double.infinity, 60.h),
       child: AppBar(
+        actions: [
+          GestureDetector(
+              onTap: () {
+                themeController.toggleTheme();
+              },
+              child: Padding(
+                padding: EdgeInsets.only(right: 15.0.w),
+                child: Icon(
+                  themeController.isDark.value ? LineIcons.sun : LineIcons.moon,
+                  size: 30.sp,
+                  color: themeController.isDark.value ? Koffwhite : Kdark,
+                ),
+              ))
+        ],
         backgroundColor: Kdark,
         centerTitle: true,
         title: const ReusableText(
@@ -59,6 +76,7 @@ class _DarkThemeState extends State<DarkTheme> {
             _buildDropdown(),
             SizedBox(height: 14.h),
             _buildLabel("Square Feet area"),
+            SizedBox(height: 8.h),
             _buildTextField(
               controller: _squareFeetController,
               hintText: "Enter square feet",
@@ -66,6 +84,7 @@ class _DarkThemeState extends State<DarkTheme> {
             ),
             SizedBox(height: 14.h),
             _buildLabel("No. of Bathrooms"),
+            SizedBox(height: 8.h),
             _buildTextField(
               controller: _bathroomsController,
               hintText: "Enter number of Bathrooms",
@@ -73,6 +92,7 @@ class _DarkThemeState extends State<DarkTheme> {
             ),
             SizedBox(height: 14.h),
             _buildLabel("Bedroom Hall Kitchen"),
+            SizedBox(height: 8.h),
             _buildTextField(
               controller: _bhkController,
               hintText: "Enter number of BHK",
@@ -100,20 +120,20 @@ class _DarkThemeState extends State<DarkTheme> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         _buildLabel("Select the Location"),
-        SizedBox(height: 14.h),
+        SizedBox(height: 8.h),
         Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8.r),
-            border: Border.all(width: 1.1, color: Kdark),
+            border: Border.all(width: 1.1, color: Koffwhite),
           ),
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 14.0.w, vertical: 2.h),
             child: DropdownButton<String>(
               value: dropdownValue,
-              icon: const Icon(LineIcons.mapAlt, color: Kdark),
-              dropdownColor: Koffwhite,
+              icon: const Icon(LineIcons.mapAlt, color: Koffwhite),
+              dropdownColor: Kgray,
               elevation: 16,
-              style: const TextStyle(color: Kdark),
+              style: const TextStyle(color: Koffwhite),
               underline: Container(height: 2, color: Colors.transparent),
               onChanged: (String? newValue) {
                 setState(() {
@@ -123,7 +143,11 @@ class _DarkThemeState extends State<DarkTheme> {
               items: locationList.map<DropdownMenuItem<String>>((String value) {
                 return DropdownMenuItem<String>(
                   value: value,
-                  child: ReusableText(text: value, fontSize: 14),
+                  child: ReusableText(
+                    text: value,
+                    fontSize: 14,
+                    color: Koffwhite,
+                  ),
                 );
               }).toList(),
             ),
@@ -141,7 +165,13 @@ class _DarkThemeState extends State<DarkTheme> {
     return ReusableTextfield(
       hintText: hintText,
       controller: controller,
+      borderColor: Koffwhite,
+      offBorder: KlightGray,
+      prefixIconColor: Koffwhite,
+      textColor: KlightGray,
       textInputType: TextInputType.number,
+      inputColor: Koffwhite,
+      cursorColor: Koffwhite,
       prefixIcon: icon,
     );
   }
@@ -181,8 +211,9 @@ class _DarkThemeState extends State<DarkTheme> {
         }
       },
       content: "P R E D I C T",
-      textColor: Koffwhite,
-      backgroundColor: Kdark,
+      textColor: Kdark,
+      backgroundColor: Koffwhite,
+      borderColor: Koffwhite,
       btnHeight: 40.h,
     );
   }

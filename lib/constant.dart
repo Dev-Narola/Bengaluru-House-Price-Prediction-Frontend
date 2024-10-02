@@ -10,6 +10,8 @@ const Kdark = Color.fromARGB(255, 0, 0, 0);
 const Kred = Color.fromARGB(255, 255, 0, 0);
 const Kgreen = Color.fromARGB(255, 0, 255, 0);
 
+var isDark = true;
+
 final List<String> locationList = <String>[
   "Select Location",
   "1st block jayanagar",

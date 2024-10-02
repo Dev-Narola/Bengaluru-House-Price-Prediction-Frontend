@@ -5,10 +5,12 @@ import 'package:bhpp/controller.dart';
 import 'package:bhpp/reusable_button.dart';
 import 'package:bhpp/reusable_text.dart';
 import 'package:bhpp/reusable_textfield.dart';
+import 'package:bhpp/theme_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -34,11 +36,25 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   PreferredSizeWidget _buildAppBar() {
+    final ThemeController themeController = Get.find();
     return PreferredSize(
       preferredSize: Size(double.infinity, 60.h),
       child: AppBar(
+        actions: [
+          GestureDetector(
+              onTap: () {
+                themeController.toggleTheme();
+              },
+              child: Padding(
+                padding: EdgeInsets.only(right: 15.0.w),
+                child: Icon(
+                  themeController.isDark.value ? LineIcons.sun : LineIcons.moon,
+                  size: 30.sp,
+                ),
+              ))
+        ],
         backgroundColor: Koffwhite,
-        centerTitle: true,
+        centerTitle: false,
         title: const ReusableText(
           text: "Bengaluru House Price Prediction",
           color: Kdark,
@@ -59,6 +75,7 @@ class _HomeScreenState extends State<HomeScreen> {
             _buildDropdown(),
             SizedBox(height: 14.h),
             _buildLabel("Square Feet area"),
+            SizedBox(height: 8.h),
             _buildTextField(
               controller: _squareFeetController,
               hintText: "Enter square feet",
@@ -66,6 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             SizedBox(height: 14.h),
             _buildLabel("No. of Bathrooms"),
+            SizedBox(height: 8.h),
             _buildTextField(
               controller: _bathroomsController,
               hintText: "Enter number of Bathrooms",
@@ -73,6 +91,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             SizedBox(height: 14.h),
             _buildLabel("Bedroom Hall Kitchen"),
+            SizedBox(height: 8.h),
             _buildTextField(
               controller: _bhkController,
               hintText: "Enter number of BHK",
@@ -99,7 +118,7 @@ class _HomeScreenState extends State<HomeScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         _buildLabel("Select the Location"),
-        SizedBox(height: 14.h),
+        SizedBox(height: 8.h),
         Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8.r),
